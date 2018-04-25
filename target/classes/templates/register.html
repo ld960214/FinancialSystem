@@ -1,0 +1,31 @@
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<link href="assets/css/login.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				<script type="text/javascript" src="assets/js/register.js"></script>
+	</head>	
+	<body>
+		<div class="back" >
+			<div class="frame">
+				<div class="login">科研项目预算编制平台</div>
+				<form class="content" action="#"  >
+					<div class="name">用户名</div>
+					<input id="rusername" type="text"  placeholder="请填写用户名">
+					<div class="name">密码</div>
+					<input id="rpassword" type="password" placeholder="请填写密码">
+					<br><br><br>
+					<div class="btn_lr">
+						<button onclick="return fnRegister();return false;" class="btn_login">注册</button>
+						<button onclick="javascript:window.location.href='login';return false;" class="btn_register">登录</button>
+					</div>
+					<br>
+					<p id="rerror_box"><br></p>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

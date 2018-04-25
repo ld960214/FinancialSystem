@@ -1,0 +1,71 @@
+@charset "utf-8";
+html ,body ,div ,button ,input
+{
+	margin: 0;
+	padding: 0;
+}
+.back
+{
+	height: 635px;
+	width: 1366px;
+	background: url(../../images/back.jpg);
+	position: absolute;
+}
+.frame
+{
+	position:absolute;
+	width: 450px;
+	height: 450px;
+	background: #fff;
+	opacity:0.99;
+	top:50%;
+	left: 50%;
+	margin-top:-220px;
+	margin-left:-220px;
+	border:1px solid #c3c3c3;
+	border-radius:10px;
+}
+.login
+{
+	height: 90px;
+	line-height: 100px;
+	border-bottom: 1px solid #c3c3c3;
+	font-size: 30px;
+	color: #666;
+	font-weight: normal;
+	text-align: center;
+	margin: 0 50px;
+}
+.content
+{
+	width: 300px;
+	margin: 30px auto 0;
+	font-size: 14px;
+	color: #666;
+}
+.frame .content .name
+{
+	margin: 10px auto;
+}
+.frame .content input[type="text"],input[type="password"]
+{
+	height: 40px;
+	border:1px solid #c3c3c3;
+	width: 298px;
+	text-indent: 10px;
+}
+.remember
+{
+	margin: 20px auto;
+}
+.btn
+{
+	color:white;
+	background: #01a19c;
+	height: 40px;
+	line-height: 45px;
+	width: 300px;
+	border: none;
+	font-size: 20px;
+	border-radius:5px;
+}

@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 Implementation-Title: FinancialSystem
 Implementation-Version: 1.0-SNAPSHOT
 Built-By: Blacat
-Implementation-Vendor-Id: com.LiuDan.Ouc
-Build-Jdk: 1.8.0_162
+Implementation-Vendor-Id: com.Blacat.Ouc
+Build-Jdk: 1.8.0_171
 Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
 
