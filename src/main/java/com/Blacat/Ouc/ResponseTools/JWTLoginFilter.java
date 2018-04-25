@@ -3,12 +3,14 @@ package com.Blacat.Ouc.ResponseTools;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +19,7 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.Blacat.Ouc.Entities.User;
+import com.Blacat.Ouc.Services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
@@ -27,6 +30,9 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Autowired
+	UserService userService;
+	
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException, IOException, ServletException {
@@ -41,7 +47,12 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             HttpServletRequest req,
             HttpServletResponse res, FilterChain chain,
             Authentication auth) throws IOException, ServletException {
-        com.Blacat.Ouc.ResponseTools.TokenService.addAuth(res,auth.getName());
+		JwtUser users = (JwtUser)auth.getPrincipal();
+		String userid=String.valueOf(users.getUserid());
+		
+		com.Blacat.Ouc.ResponseTools.TokenService.addAuth(res,userid);
+		
+        
     }
 
 }

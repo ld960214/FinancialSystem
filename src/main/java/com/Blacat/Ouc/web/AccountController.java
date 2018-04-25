@@ -17,7 +17,6 @@ import com.Blacat.Ouc.ConstNums;
 import com.Blacat.Ouc.Entities.User;
 import com.Blacat.Ouc.ResponseTools.ResponseData;
 import com.Blacat.Ouc.ResponseTools.JwtUser;
-import com.Blacat.Ouc.Services.AmountlimitService;
 import com.Blacat.Ouc.Services.UserService;
 
 
@@ -38,7 +37,7 @@ public class AccountController {
 	}
 	
 	@PostMapping("user")
-	public Object postUser(@RequestParam("username") String name,@RequestParam("password") String password){
+	public Object postUser(@RequestParam("username") String name,@RequestParam("userpassword") String password){
 		if(userService.IfExistByName(name)) return new ResponseData(ConstNums.REGISTER_ERROR_APE,"用户名已存在",1,null);
 		User user = new User(name,password);
 		userService.addUser(user);

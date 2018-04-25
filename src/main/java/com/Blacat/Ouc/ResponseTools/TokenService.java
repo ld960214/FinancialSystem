@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.OutputBuffer;
 import org.dom4j.dom.DOMNodeHelper.EmptyNodeList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.origin.SystemEnvironmentOrigin;
 
 import io.jsonwebtoken.JwtBuilder;
@@ -18,6 +19,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.Blacat.Ouc.Entities.User;
+import com.Blacat.Ouc.Services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static java.util.Collections.emptyList;
@@ -34,13 +37,17 @@ public class TokenService {
     static final String TOKEN_PREFIX = "Bearer";
     static final String HEADER_STRING = "Authorization";
     
-    public static void addAuth(HttpServletResponse res,String userid) throws IOException{
+    
+    public static void addAuth(HttpServletResponse res,String username) throws IOException{
+    	
     	String JWT = Jwts.builder()
-    			.setSubject(userid)
+    			.setSubject(username)
     			.setExpiration(new Date(System.currentTimeMillis()+EXPIRATIONTIME))
     			.signWith(SignatureAlgorithm.HS512,SECRET)
     			.compact();
     	res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
+    	byte[] data = username.getBytes();
+    	res.getOutputStream().write(data);
     }
     
     public static Authentication getAuth(HttpServletRequest req){

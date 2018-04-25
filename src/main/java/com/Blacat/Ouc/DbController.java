@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Blacat.Ouc.Repositories.UserRepository;
-import com.Blacat.Ouc.Services.AmountlimitService;
+
 import com.Blacat.Ouc.Entities.User;
 
 @Controller

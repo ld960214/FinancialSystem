@@ -47,7 +47,7 @@ public class UserService  {
 
 	@Transactional
 	public Boolean addUser(User user) {
-		if(IfExistByName(user.getUserName())){
+		if(!IfExistByName(user.getUserName())){
 		userRepository.save(user);
 		return true;}
 		else return false;
