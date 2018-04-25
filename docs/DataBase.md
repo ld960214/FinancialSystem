@@ -10,15 +10,15 @@
 
 |数据库表|作用|
 |:---|:---|
-|[User](#User)|用户|
-|[Projects](#Projects)|项目|
-|[Subjects](#Subjects)|课题|
-|[Devices](#Device)|设备|
-|[Materials](#Materials)|材料|
-|[Childmaterials](#Childmaterials)|材料子表|
-|[Trips](#Trips)|差旅|
-|[Conference](#Conference)|会议|
-|[Iptf](#Iptf)|出版文献信息传播知识产权事务|
+|[User](#user)|用户|
+|[Projects](#projects)|项目|
+|[Subjects](#subjects)|课题|
+|[Devices](#device)|设备|
+|[Materials](#materials)|材料|
+|[Childmaterials](#childmaterials)|材料子表|
+|[Trips](#trips)|差旅|
+|[Conference](#conference)|会议|
+|[Iptf](#iptf)|出版文献信息传播知识产权事务|
 
 
 ## 数据库明细
@@ -38,7 +38,7 @@
 |proid|id,主键|int|✖|
 |proname|项目名称|varchar(100)|✖|
 |protype|项目类型,便于拓展|int(3)|✖|
-|userid|所属用户id,外键关联[User](#User)|✖|
+|userid|所属用户id,外键关联[User](#user)|int|✖|
 
 ### Subjects
 
@@ -47,7 +47,7 @@
 |subid|id,主键|int|✖|
 |subname|课题名称|varchar(100)|✖|
 |subtype|课题类型|int(3)|✖|
-|proid|所属项目id,外键关联[Projects](#Projects)|✖|
+|proid|所属项目id,外键关联[Projects](#projects)|int|✖|
 
 ### Devices
 
@@ -58,7 +58,7 @@
 |dname|设备名称|varchar(100)|✖|
 |unitprice|设备单价,具体到元不接受角分|int|✖|
 |dtype|设备具体规格参数|varchar(100)|✖|
-|subid|所属课题id,外键关联[Subjects](#Subjects)|✖|
+|subid|所属课题id,外键关联[Subjects](#subjects)|int|✖|
 
 ### Materials
 
@@ -67,7 +67,7 @@
 |mid|id,主键|int|✖|
 |maname|材料模块名称|varchar(100)|✖|
 |mdes|材料描述|varchar(1024)|✖|
-|subid|所属课题id,外键关联[Subjects](#Subjects)|✖|
+|subid|所属课题id,外键关联[Subjects](#subjects)|int|✖|
 
 ### Childmaterials
 
@@ -77,7 +77,7 @@
 |cmname|材料名|varchar(100)|✖|
 |cmamount|数量|int|✖|
 |cmperprice|单价,具体到元不接受角分|int|✖|
-|mid|所属材料表id,外键关联[Childmaterials](#Childmaterials)|int|✖|
+|mid|所属材料表id,外键关联[Childmaterials](#childmaterials)|int|✖|
 
 ### Trips
 
@@ -92,7 +92,7 @@
 |tamount|差旅人数|int|✖|
 |tperprice|差旅单价,具体到元不接受角分|int|✖|
 |tallowance|差旅补助|int|✖|
-|subid|所属课题表id,外键关联[Subjects](#Subjects)|int|✖|
+|subid|所属课题表id,外键关联[Subjects](#subjects)|int|✖|
 
 ### Conference
 
@@ -105,7 +105,7 @@
 |cdays|会议天数|int|✖|
 |camount|会议人数|int|✖|
 |cdes|会议描述|varchar(1024)|✖|
-|subid|所属课题表id,外键关联[Subjects](#Subjects)|int|✖|
+|subid|所属课题表id,外键关联[Subjects](#subjects)|int|✖|
 
 ### Iptf
 
@@ -116,5 +116,5 @@
 |ides|费用描述|varchar(1024)|✖|
 |iperprice|费用单价|int|✖|
 |iamount|费用数量|int|✖|
-|subid|所属课题表id,外键关联[Subjects](#Subjects)|int|✖|
+|subid|所属课题表id,外键关联[Subjects](#subjects)|int|✖|
 
