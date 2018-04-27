@@ -17,6 +17,8 @@ public class Devices {
 	
 	private int unitprice;
 	
+	private int damount;
+	
 	private String dtype;
 	
 	private int subid;

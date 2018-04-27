@@ -57,6 +57,7 @@
 |introduction|设备介绍|varchar(1024)|✖|
 |dname|设备名称|varchar(100)|✖|
 |unitprice|设备单价,具体到元不接受角分|int|✖|
+|damount|设备数量|int|✖|
 |dtype|设备具体规格参数|varchar(100)|✖|
 |subid|所属课题id,外键关联[Subjects](#subjects)|int|✖|
 
@@ -77,7 +78,7 @@
 |cmname|材料名|varchar(100)|✖|
 |cmamount|数量|int|✖|
 |cmperprice|单价,具体到元不接受角分|int|✖|
-|mid|所属材料表id,外键关联[Childmaterials](#childmaterials)|int|✖|
+|mid|所属材料表id,外键关联[materials](#materials)|int|✖|
 
 ### Trips
 
@@ -104,6 +105,7 @@
 |ctime|会议时间,字符串形式|vvarchar(45)|✖|
 |cdays|会议天数|int|✖|
 |camount|会议人数|int|✖|
+|cperprice|会议单价|int|✖|
 |cdes|会议描述|varchar(1024)|✖|
 |subid|所属课题表id,外键关联[Subjects](#subjects)|int|✖|
 

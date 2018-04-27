@@ -19,6 +19,8 @@ public class Conference {
 	
 	private int cdays;
 	
+	private int cperprice;
+	
 	private int camount;
 	
 	private String cdes;

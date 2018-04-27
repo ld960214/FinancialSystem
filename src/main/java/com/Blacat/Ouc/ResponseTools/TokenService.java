@@ -52,7 +52,7 @@ public class TokenService {
     
     public static Authentication getAuth(HttpServletRequest req){
     	String token = req.getHeader(HEADER_STRING);
-    	System.out.print(token);
+    	System.out.println(token);
     	if(token!=null){
     		String user = Jwts.parser()
     				.setSigningKey(SECRET)
