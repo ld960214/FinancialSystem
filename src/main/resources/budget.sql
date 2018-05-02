@@ -1,301 +1,276 @@
-/*
-Navicat MySQL Data Transfer
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+--
+-- Host: localhost    Database: budget
+-- ------------------------------------------------------
+-- Server version	5.7.21-log
 
-Source Server         : localhost_3306
-Source Server Version : 50543
-Source Host           : localhost:3306
-Source Database       : budget
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-Target Server Type    : MYSQL
-Target Server Version : 50543
-File Encoding         : 65001
+--
+-- Table structure for table `childmaterials`
+--
 
-Date: 2018-04-03 09:46:21
-*/
+DROP TABLE IF EXISTS `childmaterials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `childmaterials` (
+  `cmid` int(11) NOT NULL AUTO_INCREMENT,
+  `cmname` varchar(100) NOT NULL,
+  `cmamount` int(11) NOT NULL,
+  `cmperprice` int(11) NOT NULL,
+  `mid` int(11) NOT NULL,
+  PRIMARY KEY (`cmid`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-SET FOREIGN_KEY_CHECKS=0;
+--
+-- Dumping data for table `childmaterials`
+--
 
--- ----------------------------
--- Table structure for `amountlimit`
--- ----------------------------
-DROP TABLE IF EXISTS `amountlimit`;
-CREATE TABLE `amountlimit` (
-  `aId` int(11) NOT NULL AUTO_INCREMENT,
-  `aEstimateFinance` double(6,0) DEFAULT NULL,
-  `aActualFinance` double(6,0) DEFAULT NULL,
-  `sId` int(11) NOT NULL,
-  `typeId` int(3) NOT NULL,
-  PRIMARY KEY (`aId`),
-  KEY `TA` (`typeId`),
-  KEY `TS` (`sId`),
-  CONSTRAINT `TA` FOREIGN KEY (`typeId`) REFERENCES `type` (`typeId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `TS` FOREIGN KEY (`sId`) REFERENCES `subject` (`sId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+LOCK TABLES `childmaterials` WRITE;
+/*!40000 ALTER TABLE `childmaterials` DISABLE KEYS */;
+INSERT INTO `childmaterials` VALUES (1,'材料1的材料1',3,1000,1),(6,'材料1的材料2',1,1000,1),(7,'材料2的材料1',1,10000,2);
+/*!40000 ALTER TABLE `childmaterials` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- ----------------------------
--- Records of amountlimit
--- ----------------------------
+--
+-- Table structure for table `conference`
+--
 
--- ----------------------------
--- Table structure for `device`
--- ----------------------------
-DROP TABLE IF EXISTS `device`;
-CREATE TABLE `device` (
-  `dId` int(11) NOT NULL AUTO_INCREMENT,
-  `deviceName` varchar(50) DEFAULT NULL,
-  `deviceVersion` varchar(50) DEFAULT NULL,
-  `devicePrice` double(6,0) DEFAULT NULL,
-  `deviceNum` int(5) DEFAULT NULL,
-  `dTotalFinance` double(6,0) DEFAULT NULL,
-  `dPurpose` varchar(1000) DEFAULT NULL,
-  `dParameter` varchar(1000) DEFAULT NULL,
-  `dBasis` varchar(1000) DEFAULT NULL,
-  `sId` int(11) NOT NULL,
-  `typeId` int(3) NOT NULL,
-  PRIMARY KEY (`dId`),
-  KEY `DD` (`sId`),
-  KEY `tt` (`typeId`),
-  CONSTRAINT `DD` FOREIGN KEY (`sId`) REFERENCES `subject` (`sId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `tt` FOREIGN KEY (`typeId`) REFERENCES `type` (`typeId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `conference`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `conference` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `cname` varchar(100) NOT NULL,
+  `ctopic` varchar(100) NOT NULL,
+  `ctime` varchar(45) NOT NULL,
+  `cdays` int(11) NOT NULL,
+  `camount` int(11) NOT NULL,
+  `cdes` varchar(1024) NOT NULL,
+  `subid` int(11) NOT NULL,
+  `cperprice` int(11) NOT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of device
--- ----------------------------
+--
+-- Dumping data for table `conference`
+--
 
--- ----------------------------
--- Table structure for `directfinance`
--- ----------------------------
-DROP TABLE IF EXISTS `directfinance`;
-CREATE TABLE `directfinance` (
-  `directId` int(11) NOT NULL AUTO_INCREMENT,
-  `typeId` int(3) NOT NULL,
-  `totalFinance` double(6,0) NOT NULL,
-  `specialFinance` double(6,0) NOT NULL,
-  `selfFinance` double(6,0) DEFAULT '0',
-  `sId` int(11) NOT NULL,
-  PRIMARY KEY (`directId`),
-  KEY `TD` (`typeId`),
-  KEY `ST` (`sId`),
-  CONSTRAINT `ST` FOREIGN KEY (`sId`) REFERENCES `subject` (`sId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `TD` FOREIGN KEY (`typeId`) REFERENCES `type` (`typeId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+LOCK TABLES `conference` WRITE;
+/*!40000 ALTER TABLE `conference` DISABLE KEYS */;
+INSERT INTO `conference` VALUES (1,'会议1','我就是个会议1的议题','2018-04',2,2,'这是一个测试用差旅',1,0);
+/*!40000 ALTER TABLE `conference` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- ----------------------------
--- Records of directfinance
--- ----------------------------
+--
+-- Table structure for table `devices`
+--
 
--- ----------------------------
--- Table structure for `material`
--- ----------------------------
-DROP TABLE IF EXISTS `material`;
-CREATE TABLE `material` (
-  `mId` int(11) NOT NULL AUTO_INCREMENT,
-  `mName` varchar(50) DEFAULT NULL,
-  `mNum` int(5) DEFAULT NULL,
-  `mPrice` double(6,0) DEFAULT NULL,
-  `mTotal` double(6,0) DEFAULT NULL,
-  `mPurpose` varchar(1000) DEFAULT NULL,
-  `mParameter` varchar(1000) DEFAULT NULL,
-  `mBasis` varchar(1000) DEFAULT NULL,
-  `sId` int(11) NOT NULL,
-  PRIMARY KEY (`mId`),
-  KEY `md` (`sId`),
-  CONSTRAINT `md` FOREIGN KEY (`sId`) REFERENCES `subject` (`sId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `devices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `devices` (
+  `did` int(11) NOT NULL AUTO_INCREMENT,
+  `introduction` varchar(1024) NOT NULL,
+  `dname` varchar(100) NOT NULL,
+  `unitprice` int(11) NOT NULL,
+  `dtype` varchar(100) NOT NULL,
+  `subid` int(11) NOT NULL,
+  `damount` int(11) NOT NULL,
+  PRIMARY KEY (`did`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of material
--- ----------------------------
+--
+-- Dumping data for table `devices`
+--
 
--- ----------------------------
--- Table structure for `meeting`
--- ----------------------------
-DROP TABLE IF EXISTS `meeting`;
-CREATE TABLE `meeting` (
-  `meId` int(11) NOT NULL AUTO_INCREMENT,
-  `meName` varchar(50) DEFAULT NULL,
-  `meContent` varchar(300) DEFAULT NULL,
-  `meDate` datetime DEFAULT NULL,
-  `meDays` int(3) DEFAULT NULL,
-  `mePNum` int(5) DEFAULT NULL,
-  `meDes` varchar(1000) DEFAULT NULL,
-  `meTotalDes` varchar(1000) DEFAULT NULL,
-  `sId` int(11) NOT NULL,
-  PRIMARY KEY (`meId`),
-  KEY `ms` (`sId`),
-  CONSTRAINT `ms` FOREIGN KEY (`sId`) REFERENCES `subject` (`sId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+LOCK TABLES `devices` WRITE;
+/*!40000 ALTER TABLE `devices` DISABLE KEYS */;
+INSERT INTO `devices` VALUES (4,'这是一个测试用项目','项目1',1000,'hR1型',1,0),(6,'这是第三个测试用项目','项目3',1000,'hR3型',1,0),(7,'这是第三个测试用项目','项目3',1000,'hR3型',1,0);
+/*!40000 ALTER TABLE `devices` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- ----------------------------
--- Records of meeting
--- ----------------------------
+--
+-- Table structure for table `iptf`
+--
 
--- ----------------------------
--- Table structure for `project`
--- ----------------------------
-DROP TABLE IF EXISTS `project`;
-CREATE TABLE `project` (
-  `pId` int(11) NOT NULL AUTO_INCREMENT,
-  `projectName` varchar(50) NOT NULL,
-  `projectType` varchar(50) NOT NULL,
-  `userId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`pId`),
-  KEY `UP` (`userId`),
-  CONSTRAINT `UP` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of project
--- ----------------------------
-
--- ----------------------------
--- Table structure for `publish`
--- ----------------------------
-DROP TABLE IF EXISTS `publish`;
-CREATE TABLE `publish` (
-  `puId` int(11) NOT NULL AUTO_INCREMENT,
-  `puNum` int(11) DEFAULT NULL,
-  `puDes` varchar(1000) DEFAULT NULL,
-  `ptId` int(11) DEFAULT NULL,
-  `sId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`puId`),
-  KEY `PP` (`ptId`),
-  KEY `ps` (`sId`),
-  CONSTRAINT `PP` FOREIGN KEY (`ptId`) REFERENCES `publishtype` (`ptId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `ps` FOREIGN KEY (`sId`) REFERENCES `subject` (`sId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of publish
--- ----------------------------
-
--- ----------------------------
--- Table structure for `publishtype`
--- ----------------------------
-DROP TABLE IF EXISTS `publishtype`;
-CREATE TABLE `publishtype` (
-  `ptId` int(11) NOT NULL AUTO_INCREMENT,
-  `ptName` varchar(50) DEFAULT NULL,
-  `ptDes` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`ptId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of publishtype
--- ----------------------------
-INSERT INTO `publishtype` VALUES ('1', '论文费', '按照课题预定指标，课题发表n篇学术论文，按国内论文版面费2500元/篇、国际学术会议投稿注册费7000元/篇计算（以大数据和机器学习领域知名的国际会议注册费测算）；预计国内发表n篇，国外投稿发表n篇计算，论文费支出：0.25万元/篇×n篇+0.7万元/篇×n篇=n万元。');
-INSERT INTO `publishtype` VALUES ('2', '专利费', '按照课题预定指标，课题申请专利n项，专利申请费及代理费按5000元/项计算，专利费支出：0.5万元/项×n项=n万元。');
-INSERT INTO `publishtype` VALUES ('3', '软件著作权', '按照课题预定指标，课题申请n项软件著作权，按1000元/项计算，软件著作权支出：0.1万元/项×n项=0.30万元。');
-
--- ----------------------------
--- Table structure for `subject`
--- ----------------------------
-DROP TABLE IF EXISTS `subject`;
-CREATE TABLE `subject` (
-  `sId` int(11) NOT NULL AUTO_INCREMENT,
-  `subjectName` varchar(50) NOT NULL,
-  `sEstimateFinance` double(6,0) NOT NULL,
-  `sActualFinance` double(6,0) DEFAULT NULL,
-  `specialFinance` double(6,0) NOT NULL,
-  `selfFinance` double(6,0) DEFAULT NULL,
-  `sTotalFinance` double(6,0) NOT NULL,
-  `directFinance` double(6,0) NOT NULL,
-  `indirectFinance` double(6,0) NOT NULL,
-  `PId` int(11) NOT NULL,
-  PRIMARY KEY (`sId`),
-  KEY `SP` (`PId`),
-  CONSTRAINT `SP` FOREIGN KEY (`PId`) REFERENCES `project` (`pId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of subject
--- ----------------------------
-
--- ----------------------------
--- Table structure for `trip`
--- ----------------------------
-DROP TABLE IF EXISTS `trip`;
-CREATE TABLE `trip` (
-  `trId` int(11) NOT NULL AUTO_INCREMENT,
-  `trDays` int(11) DEFAULT NULL,
-  `trPNum` int(6) DEFAULT NULL,
-  `trCityNum` int(6) DEFAULT NULL,
-  `trDes` varchar(1000) DEFAULT NULL,
-  `trDesTotal` varchar(1000) DEFAULT NULL,
-  `sId` int(11) NOT NULL,
-  `meId` int(11) NOT NULL,
-  `ttId` int(11) NOT NULL,
-  PRIMARY KEY (`trId`),
-  KEY `trs` (`sId`),
-  KEY `trm` (`meId`),
-  KEY `tti` (`ttId`),
-  CONSTRAINT `trm` FOREIGN KEY (`meId`) REFERENCES `meeting` (`meId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `trs` FOREIGN KEY (`sId`) REFERENCES `subject` (`sId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `tti` FOREIGN KEY (`ttId`) REFERENCES `triptype` (`ttId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of trip
--- ----------------------------
-
--- ----------------------------
--- Table structure for `triptype`
--- ----------------------------
-DROP TABLE IF EXISTS `triptype`;
-CREATE TABLE `triptype` (
-  `ttId` int(11) NOT NULL AUTO_INCREMENT,
-  `ttName` varchar(50) DEFAULT NULL,
-  `ttDes` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`ttId`)
+DROP TABLE IF EXISTS `iptf`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `iptf` (
+  `iid` int(11) NOT NULL AUTO_INCREMENT,
+  `iname` varchar(100) NOT NULL,
+  `ides` varchar(1024) NOT NULL,
+  `iperprice` int(11) NOT NULL,
+  `iamount` int(11) NOT NULL,
+  `subid` int(11) NOT NULL,
+  PRIMARY KEY (`iid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of triptype
--- ----------------------------
-INSERT INTO `triptype` VALUES ('1', '业务需求与发展动态调研差旅费', '摸透政府、行业业务大数据的用户需求、数据集成及应用研发现状、产业趋势、发展动态，对课题各技术方案的定型至关重要。课题组将根据需要，联系协调政府及行业各类业务单位、数据产品开发机构、知名企业与机构等进行需求调研、现有数据应用实况调研、大数据融合应用产业发展动态与趋势调研。拟选择政府及社会开放大数据应用基础较好的n、n、n和n等进行业务需求、最新产品与趋势调研，每个城市n次，平均每个城市n天，选取课题骨干人员n人参加。此项差旅费小计：n人×n城市×（530×n天+1000）元/人次=n万元。');
-INSERT INTO `triptype` VALUES ('2', '专家咨询产生的差旅费', '课题执行期间，将邀请从事大数据分析、挖掘和可视化理论和技术研究、机器学习技术研究专家以及财务专家，参加课题技术方案专题论证会（共n次课题专题论证，每次n人）、项目组关联课题技术集成会议（n次、每次n人）、课题中期检查会（n次，每次n人）、课题验收会（n次，每次n人），共计n人次，本地专家控制n比例，外地专家n比例。外专家平均按2000元/次的差旅费标准，为此差旅费支出小计：n人次×2500元/人次 = n万元。');
+--
+-- Dumping data for table `iptf`
+--
 
--- ----------------------------
--- Table structure for `type`
--- ----------------------------
-DROP TABLE IF EXISTS `type`;
-CREATE TABLE `type` (
-  `typeId` int(3) NOT NULL AUTO_INCREMENT,
-  `typeName` varchar(50) NOT NULL,
-  PRIMARY KEY (`typeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+LOCK TABLES `iptf` WRITE;
+/*!40000 ALTER TABLE `iptf` DISABLE KEYS */;
+INSERT INTO `iptf` VALUES (1,'产权1','这是一个测试用产权',2,2,1),(2,'产权1','这是一个测试用产权',2,2,1);
+/*!40000 ALTER TABLE `iptf` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- ----------------------------
--- Records of type
--- ----------------------------
-INSERT INTO `type` VALUES ('1', '设备费');
-INSERT INTO `type` VALUES ('2', '购置设备费');
-INSERT INTO `type` VALUES ('3', '试制设备费');
-INSERT INTO `type` VALUES ('4', '设备改造与租赁费');
-INSERT INTO `type` VALUES ('5', '材料费');
-INSERT INTO `type` VALUES ('6', '测试化验加工费');
-INSERT INTO `type` VALUES ('7', '燃料动力费');
-INSERT INTO `type` VALUES ('8', '差旅费');
-INSERT INTO `type` VALUES ('9', '会议费');
-INSERT INTO `type` VALUES ('10', '国际合作与交流费');
-INSERT INTO `type` VALUES ('11', '出版/文献/信息传播/知识产权事务费');
-INSERT INTO `type` VALUES ('12', '劳务费');
-INSERT INTO `type` VALUES ('13', '专家咨询费');
-INSERT INTO `type` VALUES ('14', '其他支出');
+--
+-- Table structure for table `materials`
+--
 
--- ----------------------------
--- Table structure for `user`
--- ----------------------------
+DROP TABLE IF EXISTS `materials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `materials` (
+  `mid` int(11) NOT NULL AUTO_INCREMENT,
+  `maname` varchar(100) NOT NULL,
+  `mdes` varchar(1024) NOT NULL,
+  `subid` int(11) NOT NULL,
+  PRIMARY KEY (`mid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materials`
+--
+
+LOCK TABLES `materials` WRITE;
+/*!40000 ALTER TABLE `materials` DISABLE KEYS */;
+INSERT INTO `materials` VALUES (1,'材料1','这是材料1的描述',1),(2,'材料2','这是材料2的描述',1);
+/*!40000 ALTER TABLE `materials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `projects`
+--
+
+DROP TABLE IF EXISTS `projects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `projects` (
+  `proid` int(11) NOT NULL AUTO_INCREMENT,
+  `proname` varchar(100) NOT NULL,
+  `protype` int(3) NOT NULL,
+  `userid` int(11) NOT NULL,
+  PRIMARY KEY (`proid`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `projects`
+--
+
+LOCK TABLES `projects` WRITE;
+/*!40000 ALTER TABLE `projects` DISABLE KEYS */;
+INSERT INTO `projects` VALUES (4,'测试用项目',1,1),(5,'测试用项目',1,1),(8,'测试用项目',2,1);
+/*!40000 ALTER TABLE `projects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subjects`
+--
+
+DROP TABLE IF EXISTS `subjects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `subjects` (
+  `subid` int(11) NOT NULL AUTO_INCREMENT,
+  `subname` varchar(100) NOT NULL,
+  `subtype` int(3) NOT NULL,
+  `proid` int(11) NOT NULL,
+  PRIMARY KEY (`subid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subjects`
+--
+
+LOCK TABLES `subjects` WRITE;
+/*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
+INSERT INTO `subjects` VALUES (1,'测试用项目',2,4);
+/*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `trips`
+--
+
+DROP TABLE IF EXISTS `trips`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `trips` (
+  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `tname` varchar(100) NOT NULL,
+  `tdes` varchar(1024) NOT NULL,
+  `tdays` int(11) NOT NULL,
+  `tamount` int(11) NOT NULL,
+  `tperprice` int(11) NOT NULL,
+  `tallowance` int(11) NOT NULL,
+  `subid` int(11) NOT NULL,
+  `ttimes` int(11) NOT NULL,
+  PRIMARY KEY (`tid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trips`
+--
+
+LOCK TABLES `trips` WRITE;
+/*!40000 ALTER TABLE `trips` DISABLE KEYS */;
+INSERT INTO `trips` VALUES (1,'差旅1','这是一个测试用差旅',2,2,1000,1000,1,0),(2,'差旅2','这是一个测试用差旅',2,2,1000,1000,1,0);
+/*!40000 ALTER TABLE `trips` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
 DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `userId` int(11) NOT NULL AUTO_INCREMENT,
   `userName` varchar(20) NOT NULL,
-  `userPassword` char(20) NOT NULL,
+  `userPassword` varchar(50) NOT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES ('1', '贺玉', '112');
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'admin1','admin11'),(2,'admin11','admin11');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-05-02 18:29:41
