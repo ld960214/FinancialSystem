@@ -27,6 +27,23 @@ public class Conference {
 	
 	private int subid;
 
+	
+	
+	
+	/**
+	 * @return the cperprice
+	 */
+	public int getCperprice() {
+		return cperprice;
+	}
+
+	/**
+	 * @param cperprice the cperprice to set
+	 */
+	public void setCperprice(int cperprice) {
+		this.cperprice = cperprice;
+	}
+
 	/**
 	 * @return the cid
 	 */

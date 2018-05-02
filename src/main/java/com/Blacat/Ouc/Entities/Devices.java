@@ -107,5 +107,19 @@ public class Devices {
 		this.subid = subid;
 	}
 
+	/**
+	 * @return the damount
+	 */
+	public int getDamount() {
+		return damount;
+	}
+
+	/**
+	 * @param damount the damount to set
+	 */
+	public void setDamount(int damount) {
+		this.damount = damount;
+	}
+
 	
 }

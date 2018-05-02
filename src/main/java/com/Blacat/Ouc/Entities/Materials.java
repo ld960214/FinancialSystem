@@ -31,6 +31,8 @@ public class Materials {
 		this.mid = mid;
 	}
 
+	
+	
 	/**
 	 * @return the maname
 	 */

@@ -20,6 +20,8 @@ public class Iptf {
 	private int iamount;
 	
 	private int subid;
+	
+	
 
 	/**
 	 * @return the iid

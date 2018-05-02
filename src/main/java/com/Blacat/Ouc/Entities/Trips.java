@@ -17,6 +17,8 @@ public class Trips {
 	
 	private int tdays;
 	
+	private int ttimes;
+	
 	private int tamount;
 	
 	private int tperprice;
@@ -25,6 +27,26 @@ public class Trips {
 	
 	private int subid;
 
+	
+	
+	/**
+	 * @return the ttimes
+	 */
+	public int getTtimes() {
+		return ttimes;
+	}
+
+
+
+	/**
+	 * @param ttimes the ttimes to set
+	 */
+	public void setTtimes(int ttimes) {
+		this.ttimes = ttimes;
+	}
+
+
+
 	/**
 	 * @return the tid
 	 */
@@ -32,6 +54,8 @@ public class Trips {
 		return tid;
 	}
 
+	
+	
 	/**
 	 * @param tid the tid to set
 	 */

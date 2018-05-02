@@ -429,6 +429,7 @@ function upt(){
 		tname:"差旅1",
 		tperprice:1000,
 		tdays:2,
+		ttimes:3,
 		tamount:2,
 		tallowance:1000,
 		subid:subid
@@ -439,6 +440,7 @@ function upt(){
 		tname:"差旅2",
 		tperprice:1000,
 		tdays:2,
+		ttimes:3,
 		tamount:2,
 		tallowance:1000,
 		subid:subid
@@ -680,4 +682,19 @@ $("#listm").click(function(){
 });
 $("#upm").click(function(){
 	upm();
+});
+
+//
+//下载
+//
+function getword(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", '/api/word/'+subid, true);
+    xhr.setRequestHeader("Authorization",header_key,);
+    xhr.responseType = 'blob';
+    xhr.send();
+}
+
+$("#getword").click(function(){
+	getword();
 });
